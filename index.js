@@ -45,6 +45,7 @@ const emojies = [
   "💧",
   "🌞",
 ];
+console.log(emojies.length);
 const boxes = document.getElementsByClassName("box");
 const scoreSpan = document.getElementsByClassName("score")[0];
 const triesSpan = document.getElementsByClassName("tries")[0];
@@ -52,7 +53,7 @@ const resetButton = document.querySelector(".reset-button");
 
 resetButton.addEventListener("click", handleResetGame);
 triesSpan.textContent = `Tries: ${0}`;
-scoreSpan.textContent = `0/8`;
+scoreSpan.textContent = `0/18`;
 
 let gameWon = false;
 let score = 0;
@@ -61,9 +62,9 @@ let previousClickedBox = null;
 let clickBlocked = false;
 let tries = 0;
 
-function get8RandomEmojiePair() {
+function get18RandomEmojiePair() {
   const shuffledArray = emojies.sort((a, b) => 0.5 - Math.random());
-  const eightFirst = shuffledArray.slice(0, 8);
+  const eightFirst = shuffledArray.slice(0, 18);
   const allAndShuffled = [...eightFirst, ...eightFirst].sort(
     (a, b) => 0.5 - Math.random()
   );
@@ -79,7 +80,7 @@ function initializeBoxData() {
 }
 
 function handleStartGame() {
-  const emojies = get8RandomEmojiePair();
+  const emojies = get18RandomEmojiePair();
   for (let i = 0; i < boxes.length; i++) {
     const box = boxes[i];
     const content = document.createElement("div");
@@ -143,7 +144,7 @@ function handleClickOnBox(content) {
 }
 
 function isGameWon() {
-  return score === 8;
+  return score === 18;
 }
 
 function incrementScore() {
@@ -156,7 +157,7 @@ function incrementTries() {
 
 function updateScore(newScore) {
   score = newScore;
-  scoreSpan.textContent = `${score}/8`;
+  scoreSpan.textContent = `${score}/18`;
 }
 
 function updateTries(newValue) {
@@ -201,7 +202,7 @@ function handleResetGame() {
 }
 
 function resetBoxesData() {
-  const emojies = get8RandomEmojiePair();
+  const emojies = get18RandomEmojiePair();
   const contentBoxes = document.getElementsByClassName("content");
   for (let i = 0; i < boxes.length; i++) {
     const cb = contentBoxes[i];
