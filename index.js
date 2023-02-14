@@ -193,7 +193,7 @@ function handleResetGame() {
   previousClickedBox = null;
   gameWon = false;
   clickBlocked = false;
-  tries = 0;
+  updateTries(0);
   unflipAll();
   setTimeout(() => {
     resetBoxesData();
