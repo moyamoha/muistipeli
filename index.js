@@ -151,13 +151,17 @@ function incrementScore() {
 }
 
 function incrementTries() {
-  tries += 1;
-  triesSpan.textContent = `Tries: ${tries}`;
+  updateTries(tries + 1);
 }
 
 function updateScore(newScore) {
   score = newScore;
   scoreSpan.textContent = `${score}/8`;
+}
+
+function updateTries(newValue) {
+  tries = newValue;
+  triesSpan.textContent = `Tries: ${tries}`;
 }
 
 function unflipBoxes(first, second) {
