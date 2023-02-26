@@ -1,51 +1,6 @@
-const emojies = [
-  "😂",
-  "😉",
-  "✅",
-  "💀",
-  "👀",
-  "🐐",
-  "🔥",
-  "🎉",
-  "💖",
-  "🏆",
-  "😎",
-  "🥰",
-  "👽",
-  "🦁",
-  "🐬",
-  "🐧",
-  "🕊️",
-  "🫦",
-  "💪",
-  "🤝",
-  "👏",
-  "🎈",
-  "🎁",
-  "🕶️",
-  "⚽",
-  "💍",
-  "🎯",
-  "🥇",
-  "♥️",
-  "💻",
-  "📕",
-  "📔",
-  "💵",
-  "🍕",
-  "☕",
-  "🧉",
-  "🍉",
-  "🍓",
-  "🍀",
-  "🌺",
-  "💐",
-  "🏍️",
-  "🚀",
-  "💧",
-  "🌞",
-];
-console.log(emojies.length);
+import { get18RandomEmojiePair, initializeBoxData } from "./data.js";
+import { unflipAll, unflipBoxes } from "./ui.js";
+
 const boxes = document.getElementsByClassName("box");
 const scoreSpan = document.getElementsByClassName("score")[0];
 const triesSpan = document.getElementsByClassName("tries")[0];
@@ -61,23 +16,6 @@ let click = 0;
 let previousClickedBox = null;
 let clickBlocked = false;
 let tries = 0;
-
-function get18RandomEmojiePair() {
-  const shuffledArray = emojies.sort((a, b) => 0.5 - Math.random());
-  const eightFirst = shuffledArray.slice(0, 18);
-  const allAndShuffled = [...eightFirst, ...eightFirst].sort(
-    (a, b) => 0.5 - Math.random()
-  );
-  return allAndShuffled;
-}
-
-function initializeBoxData() {
-  return {
-    clicked: false,
-    numberOfTimesClicked: 0,
-    clickBlockedOnThis: false,
-  };
-}
 
 function handleStartGame() {
   const emojies = get18RandomEmojiePair();
@@ -163,21 +101,6 @@ function updateScore(newScore) {
 function updateTries(newValue) {
   tries = newValue;
   triesSpan.textContent = `Tries: ${tries}`;
-}
-
-function unflipBoxes(first, second) {
-  first.classList.remove("flipped");
-  first.data.clicked = false;
-  second.classList.remove("flipped");
-  second.data.clicked = false;
-  click = 0;
-}
-
-function unflipAll() {
-  const allBoxes = document.getElementsByClassName("content");
-  for (let contentBox of allBoxes) {
-    contentBox.classList.remove("flipped");
-  }
 }
 
 function compare(first, second) {
