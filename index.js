@@ -1,5 +1,4 @@
 import { get18RandomEmojiePair, initializeBoxData } from "./data.js";
-import { unflipAll, unflipBoxes } from "./ui.js";
 
 const boxes = document.getElementsByClassName("box");
 const scoreSpan = document.getElementsByClassName("score")[0];
@@ -129,5 +128,20 @@ function resetBoxesData() {
     const cb = contentBoxes[i];
     cb.data = initializeBoxData();
     cb.getElementsByClassName("back")[0].textContent = emojies[i];
+  }
+}
+
+export function unflipBoxes(first, second) {
+  first.classList.remove("flipped");
+  first.data.clicked = false;
+  second.classList.remove("flipped");
+  second.data.clicked = false;
+  click = 0;
+}
+
+export function unflipAll() {
+  const allBoxes = document.getElementsByClassName("content");
+  for (let contentBox of allBoxes) {
+    contentBox.classList.remove("flipped");
   }
 }
