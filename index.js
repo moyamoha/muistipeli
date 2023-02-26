@@ -10,7 +10,6 @@ resetButton.addEventListener("click", handleResetGame);
 triesSpan.textContent = `Tries: ${0}`;
 scoreSpan.textContent = `0/18`;
 
-let gameWon = false;
 let score = 0;
 let click = 0;
 let previousClickedBox = null;
@@ -115,7 +114,6 @@ function handleResetGame() {
   updateScore(0);
   click = 0;
   previousClickedBox = null;
-  gameWon = false;
   clickBlocked = false;
   updateTries(0);
   unflipAll();
